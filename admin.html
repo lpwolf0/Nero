@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Xclusive Rent A Car</title>
+  <meta name="theme-color" content="#0b3aa8">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Not set up yet -->
+  <main id="viewSetup" class="login-wrap" hidden>
+    <div class="login-card">
+      <h1>Almost there</h1>
+      <p>The admin needs your Supabase details. Open <strong>supabase-config.js</strong> and fill in <code>SUPABASE_URL</code> and <code>SUPABASE_KEY</code>, then reload this page. Step-by-step help is in <strong>SUPABASE-SETUP.md</strong>.</p>
+    </div>
+  </main>
+
+  <!-- Login -->
+  <main id="viewLogin" class="login-wrap" hidden>
+    <form id="loginForm" class="login-card" novalidate>
+      <img src="images/main_logo.png" alt="Xclusive Rent A Car" width="219" height="134" class="login-logo">
+      <h1>Admin login</h1>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="current-password" required>
+      </div>
+      <p class="form-msg err" id="loginMsg" role="alert"></p>
+      <button type="submit" class="btn btn-gold btn-block" id="loginBtn">Log in</button>
+      <p class="login-back"><a href="index.html">&larr; Back to the website</a></p>
+    </form>
+  </main>
+
+  <!-- Dashboard -->
+  <div id="viewApp" hidden>
+    <header class="admin-top">
+      <div class="container admin-top-inner">
+        <a href="index.html" class="admin-brand"><img src="images/main_logo.png" alt="" width="219" height="134"><span>Admin</span></a>
+        <nav class="admin-nav" aria-label="Admin sections">
+          <button class="admin-tab active" data-tab="cars">Cars</button>
+          <button class="admin-tab" data-tab="cats">Categories</button>
+          <button class="admin-tab" data-tab="enq">Enquiries <span class="tab-badge" id="enqBadge" hidden></span></button>
+          <button class="admin-tab" data-tab="stats">Stats</button>
+          <button class="admin-tab" data-tab="locations">Locations</button>
+          <button class="admin-tab" data-tab="testimonials">Testimonials</button>
+          <button class="admin-tab" data-tab="faqs">FAQs</button>
+          <button class="admin-tab" data-tab="settings">Settings</button>
+        </nav>
+        <div class="admin-user">
+          <a href="index.html" target="_blank" rel="noopener" class="btn btn-outline btn-sm">View website</a>
+          <button class="btn btn-dark btn-sm" id="logoutBtn">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <p class="form-msg err" id="appMsg" role="alert"></p>
+
+      <!-- Cars -->
+      <section id="tabCars" data-pane="cars">
+        <div class="admin-head">
+          <div>
+            <h1>Cars</h1>
+            <p class="muted" id="carsSummary"></p>
+          </div>
+          <button class="btn btn-gold" id="addCarBtn">+ Add a car</button>
+        </div>
+        <div id="carsList" class="admin-list" aria-live="polite"></div>
+      </section>
+
+      <!-- Categories -->
+      <section id="tabCats" data-pane="cats" hidden>
+        <div class="admin-head">
+          <div>
+            <h1>Categories</h1>
+            <p class="muted">Categories appear as filters and tabs on the website. A car can be in more than one.</p>
+          </div>
+          <button class="btn btn-gold" id="addCatBtn">+ Add a category</button>
+        </div>
+        <div id="catsList" class="admin-list"></div>
+      </section>
+
+      <!-- Enquiries -->
+      <section data-pane="enq" hidden>
+        <div class="admin-head">
+          <div>
+            <h1>Enquiries</h1>
+            <p class="muted">Every time a visitor uses the booking form or taps <em>Book now</em> on a car, it is logged here. It shows interest, not confirmed bookings: the customer still has to send the WhatsApp message.</p>
+          </div>
+          <div class="head-actions">
+            <select id="enqFilter" aria-label="Filter by status">
+              <option value="">All statuses</option>
+              <option value="new">New</option>
+              <option value="followed_up">Followed up</option>
+              <option value="booked">Booked</option>
+              <option value="not_interested">Not interested</option>
+            </select>
+            <button class="btn btn-outline" id="enqCsv">Download CSV</button>
+          </div>
+        </div>
+        <div id="enqList" class="admin-list"></div>
+      </section>
+
+      <!-- Stats -->
+      <section data-pane="stats" hidden>
+        <div class="admin-head">
+          <div><h1>Stats</h1><p class="muted" id="statsNote"></p></div>
+          <select id="statsRange" aria-label="Period">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+        </div>
+        <div id="statsBody"></div>
+      </section>
+
+      <!-- Locations -->
+      <section data-pane="locations" hidden>
+        <div class="admin-head">
+          <div><h1>Locations</h1><p class="muted">The cities in the booking form and in the &ldquo;Where we operate&rdquo; section on the home page.</p></div>
+          <button class="btn btn-gold" data-add="locations">+ Add a location</button>
+        </div>
+        <div class="admin-list" data-list="locations"></div>
+      </section>
+
+      <!-- Testimonials -->
+      <section data-pane="testimonials" hidden>
+        <div class="admin-head">
+          <div><h1>Testimonials</h1><p class="muted">Customer reviews shown in the slider on the home page. Hiding all of them removes the section.</p></div>
+          <button class="btn btn-gold" data-add="testimonials">+ Add a testimonial</button>
+        </div>
+        <div class="admin-list" data-list="testimonials"></div>
+      </section>
+
+      <!-- FAQs -->
+      <section data-pane="faqs" hidden>
+        <div class="admin-head">
+          <div><h1>FAQs</h1><p class="muted">Questions and answers on the home page. The city pages and the self-drive page keep their own questions.</p></div>
+          <button class="btn btn-gold" data-add="faqs">+ Add a question</button>
+        </div>
+        <div class="admin-list" data-list="faqs"></div>
+      </section>
+
+      <!-- Settings -->
+      <section data-pane="settings" hidden>
+        <div class="admin-head">
+          <div><h1>Settings</h1><p class="muted">Change these here instead of editing code. The website picks them up within moments.</p></div>
+        </div>
+        <form id="settingsForm" class="settings-card" novalidate>
+          <h2>Contact</h2>
+          <div class="field">
+            <label for="sWa">WhatsApp number</label>
+            <input id="sWa" inputmode="numeric" placeholder="2349163910032">
+            <small class="muted">Digits only, with country code and no + or spaces. Booking buttons open this chat with the message already typed. <a id="sWaTest" href="#" target="_blank" rel="noopener">Test it</a></small>
+          </div>
+          <div class="field">
+            <label for="sPhone">Phone number for calls</label>
+            <input id="sPhone" inputmode="tel" placeholder="+2349163910032">
+            <small class="muted">Used by the header, the &ldquo;Call us&rdquo; buttons and the first number in the footer.</small>
+          </div>
+          <h2>Promo bar</h2>
+          <label class="switch-row"><input type="checkbox" id="sPromoOn" checked> <span>Show the promo bar at the top of every page</span></label>
+          <div class="form-row two">
+            <div class="field"><label for="sPromoHi">Highlighted words</label><input id="sPromoHi" placeholder="10% off"></div>
+            <div class="field"><label for="sPromoTxt">Text after it</label><input id="sPromoTxt" placeholder="your next ride"></div>
+          </div>
+          <div class="form-row two">
+            <div class="field"><label for="sPromoBtn">Button text</label><input id="sPromoBtn" placeholder="Claim it on WhatsApp"></div>
+            <div class="field"><label for="sPromoMsg">WhatsApp message it sends</label><input id="sPromoMsg"></div>
+          </div>
+          <p class="form-msg" id="settingsMsg" role="status"></p>
+          <button type="submit" class="btn btn-gold" id="settingsSave">Save settings</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Car form -->
+  <dialog id="carDialog" class="admin-dialog" aria-labelledby="carDialogTitle">
+    <form id="carForm" novalidate>
+      <div class="dialog-head">
+        <h2 id="carDialogTitle">Add a car</h2>
+        <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div class="field">
+          <label for="fName">Car name <span class="req">*</span></label>
+          <input id="fName" required placeholder="e.g. Toyota Land Cruiser 2024">
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="fYear">Year <span class="req">*</span></label><input id="fYear" type="number" min="1990" max="2100" required></div>
+          <div class="field"><label for="fSeats">Seats <span class="req">*</span></label><input id="fSeats" type="number" min="1" max="60" required></div>
+          <div class="field"><label for="fFuel">Fuel</label>
+            <select id="fFuel"><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="fPrice">Price per day (&#8358;)</label><input id="fPrice" type="number" min="0" step="1000" placeholder="Leave empty for &quot;Price on request&quot;"></div>
+          <div class="field"><label for="fOrder">Position</label><input id="fOrder" type="number" min="0" step="10"><small class="muted">Smaller numbers show first</small></div>
+        </div>
+        <div class="form-row two">
+          <div class="field"><label for="fPriceSelf">Self-drive price per day (&#8358;)</label><input id="fPriceSelf" type="number" min="0" step="1000" placeholder="Optional"><small class="muted">If set, the website shows both prices. The price above then reads &ldquo;with driver&rdquo;.</small></div>
+        </div>
+        <div class="field">
+          <label for="fFeatures">Features</label>
+          <textarea id="fFeatures" rows="4" placeholder="One per line, e.g.&#10;Air conditioning&#10;Leather seats&#10;GPS tracker"></textarea>
+        </div>
+        <fieldset class="field">
+          <legend>Categories <span class="req">*</span></legend>
+          <div id="fCats" class="cat-checks"></div>
+        </fieldset>
+        <div class="field">
+          <label for="fPhoto">Photo <span class="req" id="photoReq">*</span></label>
+          <div class="photo-row">
+            <div class="photo-preview" id="photoPreview"><span>No photo</span></div>
+            <div>
+              <input id="fPhoto" type="file" accept="image/png,image/jpeg,image/webp">
+              <small class="muted">A clean photo of the car, ideally on a transparent or plain background (PNG). It is resized automatically.</small>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fGallery">More photos (optional, up to 8)</label>
+          <div id="galleryCur" class="gallery-cur"></div>
+          <input id="fGallery" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+          <small class="muted" id="galleryHint">Interior, back view, side view. They show as small photos on the car page.</small>
+        </div>
+        <label class="switch-row"><input type="checkbox" id="fVisible" checked> <span>Show this car on the website</span></label>
+        <p class="form-msg err" id="carMsg" role="alert"></p>
+      </div>
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-outline" data-close>Cancel</button>
+        <button type="submit" class="btn btn-gold" id="carSaveBtn">Save car</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Category form -->
+  <dialog id="catDialog" class="admin-dialog small" aria-labelledby="catDialogTitle">
+    <form id="catForm" novalidate>
+      <div class="dialog-head">
+        <h2 id="catDialogTitle">Add a category</h2>
+        <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div class="field"><label for="cName">Name <span class="req">*</span></label><input id="cName" required placeholder="e.g. Luxury Vans"><small class="muted">Shown in filters and tabs.</small></div>
+        <div class="field"><label for="cLabel">Small badge on car cards</label><input id="cLabel" placeholder="e.g. Van"><small class="muted">Leave empty to use the name.</small></div>
+        <div class="field"><label for="cOrder">Position</label><input id="cOrder" type="number" min="0" step="10"></div>
+        <p class="form-msg err" id="catMsg" role="alert"></p>
+      </div>
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-outline" data-close>Cancel</button>
+        <button type="submit" class="btn btn-gold" id="catSaveBtn">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Generic form for locations, testimonials and FAQs (built by admin.js) -->
+  <dialog id="entDialog" class="admin-dialog small" aria-labelledby="entTitle">
+    <form id="entForm" novalidate>
+      <div class="dialog-head">
+        <h2 id="entTitle">Edit</h2>
+        <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="dialog-body" id="entBody"></div>
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-outline" data-close>Cancel</button>
+        <button type="submit" class="btn btn-gold" id="entSave">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="common.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
