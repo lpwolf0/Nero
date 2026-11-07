@@ -648,7 +648,7 @@
   $('statsRange').addEventListener('change', renderStats);
 
   // ---------------------------------------------------------------- settings
-  const PROMO_DEFAULTS = { promo_highlight: '10% off', promo_text: 'your next ride', promo_button: 'Claim it on WhatsApp', promo_message: 'Hello Xclusive Rent A Car, I would like to claim the 10% discount on my next ride.' };
+  const PROMO_DEFAULTS = { promo_highlight: '10% off', promo_text: 'your next ride', promo_button: 'Claim it on WhatsApp', promo_message: 'Hello Perfect Hand Integrated Services, I would like to claim the 10% discount on my next ride.' };
   const sField = { whatsapp_number: 'sWa', phone: 'sPhone', promo_highlight: 'sPromoHi', promo_text: 'sPromoTxt', promo_button: 'sPromoBtn', promo_message: 'sPromoMsg' };
   function fillSettings() {
     const m = settingsMap || {};
@@ -658,14 +658,14 @@
     ['promo_highlight', 'promo_text', 'promo_button', 'promo_message'].forEach(k => { $(sField[k]).value = m[k] ?? PROMO_DEFAULTS[k]; });
     waTest();
   }
-  function waTest() { const n = $('sWa').value.replace(/\D/g, ''); $('sWaTest').href = n ? `https://wa.me/${n}?text=${encodeURIComponent('Test message from the Xclusive website')}` : '#'; }
+  function waTest() { const n = $('sWa').value.replace(/\D/g, ''); $('sWaTest').href = n ? `https://wa.me/${n}?text=${encodeURIComponent('Test message from the Perfect Hand website')}` : '#'; }
   $('sWa').addEventListener('input', waTest);
 
   $('settingsForm').addEventListener('submit', async e => {
     e.preventDefault();
     const msg = $('settingsMsg'), btn = $('settingsSave'); msg.className = 'form-msg err'; msg.textContent = '';
     const wa = $('sWa').value.replace(/\D/g, ''), phone = $('sPhone').value.replace(/[^\d+]/g, '');
-    if (wa && (wa.length < 10 || wa.length > 15)) return void (msg.textContent = 'The WhatsApp number should be 10 to 15 digits including the country code (e.g. 2349163910032).');
+    if (wa && (wa.length < 10 || wa.length > 15)) return void (msg.textContent = 'The WhatsApp number should be 10 to 15 digits including the country code (e.g. 2349134399522).');
     if (phone && phone.replace(/\D/g, '').length < 7) return void (msg.textContent = 'That phone number looks too short.');
     $('sWa').value = wa; $('sPhone').value = phone;
     const rows = [

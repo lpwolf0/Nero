@@ -1,5 +1,5 @@
 -- =====================================================================
--- Xclusive Rent A Car: database setup. Paste ALL of this into
+-- Perfect Hand Integrated Services: database setup. Paste ALL of this into
 -- Supabase > SQL Editor > New query, change the email on the line marked
 -- "CHANGE THIS", then press Run. It is safe to run more than once.
 -- =====================================================================

@@ -23,13 +23,12 @@ window.logEnquiry = function () {};
     if (phone) {
       PHONE = phone;
       document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-        const first = a.matches('.nav-phone, .mobile-bar a, .detail-cta a, .cta-actions a, .contact-line a:first-child');
+        const first = a.matches('.nav-phone, .mobile-bar a, .detail-cta a, .cta-actions a');
         if (!first) return;
         a.setAttribute('href', 'tel:' + phone);
         const span = a.querySelector('span');
         if (span) span.textContent = fmtPhone(phone);
         else if (a.matches('.cta-actions a')) a.textContent = 'Call ' + fmtPhone(phone);
-        else if (a.matches('.contact-line a')) a.textContent = phone;
       });
     }
 

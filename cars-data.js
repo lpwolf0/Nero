@@ -83,7 +83,7 @@ function carLabel(c) {
   }
   return 'Car';
 }
-function carEnquiry(c) { return `Hello Xclusive Rent A Car, I would like to rent the ${c.name}. Please confirm availability and price.`; }
+function carEnquiry(c) { return `Hello Perfect Hand Integrated Services, I would like to rent the ${c.name}. Please confirm availability and price.`; }
 function esc(s) { return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
 function carThumb(c) { return c.thumbUrl || ('images/cars/' + c.img); }
 function carFull(c) { return c.fullUrl || ('images/cars/' + c.img.replace('thumb_', '')); }

@@ -1,12 +1,12 @@
 -- =====================================================================
--- Xclusive Rent A Car: COMPLETE database setup for a NEW Supabase project.
+-- Perfect Hand Integrated Services: COMPLETE database setup for a NEW Supabase project.
 -- 1) Change CHANGE_ME@example.com below (once) to your admin login email.
 -- 2) Paste ALL of this into Supabase > SQL Editor > New query and press Run.
 -- Safe to run more than once. (It is setup.sql followed by upgrade.sql.)
 -- =====================================================================
 
 -- =====================================================================
--- Xclusive Rent A Car: database setup. Paste ALL of this into
+-- Perfect Hand Integrated Services: database setup. Paste ALL of this into
 -- Supabase > SQL Editor > New query, change the email on the line marked
 -- "CHANGE THIS", then press Run. It is safe to run more than once.
 -- =====================================================================
@@ -102,7 +102,7 @@ select setval(pg_get_serial_sequence('public.cars', 'id'), greatest((select coal
 
 
 -- =====================================================================
--- Xclusive Rent A Car: dashboard upgrade (settings, testimonials, FAQs,
+-- Perfect Hand Integrated Services: dashboard upgrade (settings, testimonials, FAQs,
 -- locations, enquiries log, car extras).
 -- Paste ALL of this into Supabase > SQL Editor > New query and press Run.
 -- Safe to run more than once. It does NOT touch your admin email: the
@@ -239,7 +239,7 @@ select question, answer, sort_order from (values
   ('Does our car rental service include a driver?', 'Yes, our car rental services offer options with a professional driver. Enjoy a hassle-free experience with our expert drivers who ensure a comfortable and reliable journey.', 20),
   ('Does our car rental service provide a Mopol escort for security?', 'Yes, our car rentals can include escort services for enhanced security. We offer options to ensure a safe and secure travel experience tailored to your needs.', 30),
   ('Who takes care of the driver or escort?', 'The client provides accommodation and feeding for drivers and Mopol on outstation jobs (outside their base).', 40),
-  ('Does the vehicle come with fuel?', 'No, it does not. Our clients fuel the vehicle, except on special requests where the client asks Xclusive Rent A Car to fuel it, which is then added to the rental fee.', 50),
+  ('Does the vehicle come with fuel?', 'No, it does not. Our clients fuel the vehicle, except on special requests where the client asks Perfect Hand Integrated Services to fuel it, which is then added to the rental fee.', 50),
   ('Can I register my vehicle with your company?', 'Yes. See our [Partner with us](partners.html) page, or get in touch and we will walk you through it.', 60),
   ('Will I get a refund when I cancel my reservation?', 'Please note that reservations are non-refundable.', 70)
 ) as v(question, answer, sort_order)

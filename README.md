@@ -1,9 +1,9 @@
-# Xclusive Rent A Car website
+# Perfect Hand Integrated Services website
 
 Plain HTML, CSS and JavaScript. No build step: double-click `index.html`, or upload the whole folder to your hosting.
 
 ## The 3 things to set first (WhatsApp and phone: admin > Settings, or the top of `common.js`)
-- `WHATSAPP_NUMBER`: your WhatsApp number, digits only with country code (e.g. `'2349163910032'`). Once set, every "Book now" button and the booking form open WhatsApp with the message already typed. While it is empty they open your WhatsApp link and copy the message so the customer can paste it.
+- `WHATSAPP_NUMBER`: your WhatsApp number, digits only with country code (e.g. `'2349134399522'`). Once set, every "Book now" button and the booking form open WhatsApp with the message already typed. While it is empty they open your WhatsApp link and copy the message so the customer can paste it.
 - `PHONE`: number used by the mobile "Call us" bar.
 - `https://xclusiverentcars.com` in `sitemap.xml` and `robots.txt`: change it if your real address differs.
 

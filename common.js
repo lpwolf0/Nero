@@ -3,12 +3,12 @@
 // Load this first on every page.
 
 // ---- Business settings (edit here) ---------------------------------------
-const WHATSAPP = 'https://wa.me/message/PN4K63INSLYEI1';
+const WHATSAPP = 'https://wa.me/2349134399522';
 // You can now change the WhatsApp number and phone from admin.html > Settings (no code needed).
 // The values below are only the fallback used when Settings has not been saved yet.
-// WhatsApp number: digits only, with country code, e.g. '2349163910032'. While it is empty the
+// WhatsApp number: digits only, with country code, e.g. '2349134399522'. While it is empty the
 // buttons open your WhatsApp link and copy the message to the clipboard.
-let WHATSAPP_NUMBER = '';
+let WHATSAPP_NUMBER = '2349134399522';
 let PHONE = '+2349134399522';
 
 function waLink(text) {
@@ -154,6 +154,6 @@ document.querySelectorAll('.accordion').forEach(initAccordion);
   bar.className = 'mobile-bar';
   bar.innerHTML =
     `<a class="btn btn-outline" href="tel:${PHONE}">Call us</a>` +
-    `<a class="btn btn-wa" href="${waLink('Hello Xclusive Rent A Car, I would like to make an enquiry.')}" data-wa="Hello Xclusive Rent A Car, I would like to make an enquiry." target="_blank" rel="noopener">WhatsApp</a>`;
+    `<a class="btn btn-wa" href="${waLink('Hello Perfect Hand Integrated Services, I would like to make an enquiry.')}" data-wa="Hello Perfect Hand Integrated Services, I would like to make an enquiry." target="_blank" rel="noopener">WhatsApp</a>`;
   document.body.appendChild(bar);
 })();

@@ -28,7 +28,7 @@
     if (!ok) { toast('Please choose a pickup location and date.'); return; }
 
     const v = n => form.elements[n].value;
-    const lines = ['Hello Xclusive Rent A Car, I would like to book a vehicle.',
+    const lines = ['Hello Perfect Hand Integrated Services, I would like to book a vehicle.',
       `Location: ${v('location')}`,
       `Vehicle: ${form.elements.vehicle.selectedOptions[0].text}`,
       `Service: ${form.elements.service.selectedOptions[0].text}`,

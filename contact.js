@@ -6,7 +6,7 @@
 //   2. Leave it empty and the form opens the visitor's email app with the message
 //      pre-filled to the address below (works everywhere, no backend needed).
 const FORM_ENDPOINT = '';                         // e.g. 'https://formspree.io/f/xxxxxxx'
-const RECEIVER_EMAIL = 'info@xclusiverentcars.com';
+const RECEIVER_EMAIL = 'phsinigeria@gmail.com';
 // Needs common.js loaded first (for waLink, WHATSAPP_NUMBER, toast).
 
 (function () {
@@ -78,7 +78,7 @@ const RECEIVER_EMAIL = 'info@xclusiverentcars.com';
   if (wa) wa.addEventListener('click', () => {
     if (!validate()) return;
     const d = Object.fromEntries(new FormData(form).entries());
-    const text = `Hello Xclusive Rent A Car, my name is ${d.name}.\n${d.comments}\nPhone: ${d.phone}`;
+    const text = `Hello Perfect Hand Integrated Services, my name is ${d.name}.\n${d.comments}\nPhone: ${d.phone}`;
     if (!WHATSAPP_NUMBER && navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => toast('Your message is copied. Paste it into the WhatsApp chat.'), () => {});
     }

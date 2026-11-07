@@ -6,7 +6,7 @@ carsReady.then(function () {
   const car = cars.find(c => c.id === id);
 
   if (!car) {
-    document.title = 'Car not found | Xclusive Rent A Car';
+    document.title = 'Car not found | Perfect Hand Integrated Services';
     root.innerHTML = `
       <div class="not-found">
         <h2>Sorry, we couldn't find that car.</h2>
@@ -38,9 +38,9 @@ carsReady.then(function () {
     ? `<h3>Features</h3><ul class="included">${car.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>`
     : '';
 
-  document.title = `${car.name} for Rent in Nigeria | Xclusive Rent A Car`;
+  document.title = `${car.name} for Rent in Nigeria | Perfect Hand Integrated Services`;
   document.querySelector('meta[name="description"]').setAttribute('content',
-    `Hire the ${car.name} from Xclusive Rent A Car. ${car.seats} seats, ${car.fuel.toLowerCase()}, automatic. Chauffeur-driven or self-drive. Book via WhatsApp today.`);
+    `Hire the ${car.name} from Perfect Hand Integrated Services. ${car.seats} seats, ${car.fuel.toLowerCase()}, automatic. Chauffeur-driven or self-drive. Book via WhatsApp today.`);
   document.getElementById('crumbName').textContent = car.name;
   document.getElementById('bannerTitle').textContent = car.name;
 
@@ -105,17 +105,12 @@ carsReady.then(function () {
       <div class="side-card">
         <h5>Contact Info</h5>
         <address>
-          <p>Ada-George Road, Rumuepirikom 500272, Port Harcourt, Rivers State, Nigeria</p>
-          <p>Murtala Muhammed International Airport, Lagos State</p>
-          <p>Nnamdi Azikiwe International Airport, Abuja FCT</p>
-          <p>Sam Mbakwe International Airport, Imo State</p>
-          <p>Akanu Ibiam International Airport, Enugu State</p>
+          <p>No. 1 Tombia Street G.R.A Phase II<br>Port Harcourt,<br>Rivers State,<br>Nigeria.</p>
+          <p>Branch Office: 21 Dim Rd. Str., Yenegoa,<br>Bayelsa St.</p>
         </address>
         <p class="side-contact">
-          <a href="tel:+2349163910032">+2349163910032</a><br>
-          <a href="tel:+2348026434549">+2348026434549</a><br>
-          <a href="tel:+2348184213766">+2348184213766</a><br>
-          <a href="mailto:info@xclusiverentcars.com">info@xclusiverentcars.com</a>
+          Email: <a href="mailto:phsinigeria@gmail.com">phsinigeria@gmail.com</a><br>
+          Tel: <a href="tel:+2348067852755">08067852755</a>, <a href="tel:+2348184351604">08184351604</a>
         </p>
       </div>
     </aside>`;
