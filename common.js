@@ -9,7 +9,7 @@ const WHATSAPP = 'https://wa.me/message/PN4K63INSLYEI1';
 // WhatsApp number: digits only, with country code, e.g. '2349163910032'. While it is empty the
 // buttons open your WhatsApp link and copy the message to the clipboard.
 let WHATSAPP_NUMBER = '';
-let PHONE = '+2349163910032';
+let PHONE = '+2349134399522';
 
 function waLink(text) {
   return WHATSAPP_NUMBER
